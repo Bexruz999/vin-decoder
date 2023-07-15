@@ -1,0 +1,36 @@
+
+.vin-content {
+    width: 100%;
+}
+
+.vin_form {
+    display: flex;
+}
+
+.vin-td {
+    font-size: 14px;
+    color: rgba(56, 56, 56, 0.85);
+}
+
+.vin-value {
+    color: black;
+}
+
+.vin_label {
+    margin-bottom: 0;
+}
+
+.vin_submit {
+    padding: 10px 15px;
+    text-align: center;
+    background-color: #0c0c0c;
+    color: white;
+    cursor: pointer;
+}
+
+table td {
+    padding: 5px 7px !important;
+}
+
+table tr:nth-child(even) {background-color: rgba(186, 188, 192, 0.34)
+}
