@@ -39,7 +39,11 @@ class  VinDecoderAdmin {
 
 	}
 
-	public function register_menu () {
+    /**
+     * @return void
+     */
+    public function register_menu (): void
+    {
 
 		add_menu_page(
 			__('VD settings', 'plugin-name'),
@@ -53,13 +57,21 @@ class  VinDecoderAdmin {
 
 	}
 
-	public function vd_settings_page() {
+    /**
+     * @return void
+     */
+    public function vd_settings_page(): void
+    {
 
 		require_once plugin_dir_path(__FILE__) . 'partials/vin-decoder-admin-display.php';
 
     }
 
-	public function vd_settings_init() {
+    /**
+     * @return void
+     */
+    public function vd_settings_init(): void
+    {
 
 		register_setting('vd_settings', 'vd_api_key');
 
@@ -69,11 +81,19 @@ class  VinDecoderAdmin {
 
 	}
 
-	public function vd_api_key_section_html () {
+    /**
+     * @return void
+     */
+    public function vd_api_key_section_html (): void
+    {
 		echo esc_html__('Vin decoder description', 'vin-decoder');
 	}
 
-	public function vd_api_key_field() {
+    /**
+     * @return void
+     */
+    public function vd_api_key_field(): void
+    {
 
 		$options = get_option('vd_api_key');?>
 		<label>

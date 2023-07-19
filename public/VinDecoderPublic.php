@@ -1,6 +1,10 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 class  VinDecoderPublic {
+
+    protected VinShortcode $shortcode;
 
 	/**
 	 * @var string
@@ -11,9 +15,6 @@ class  VinDecoderPublic {
 	 * @var string
 	 */
 	protected string $version;
-
-
-	protected $shortcode;
 
 	/**
 	 * @param $vinDecoder
@@ -31,6 +32,15 @@ class  VinDecoderPublic {
 
 	}
 
+    /**
+     * @return void
+     */
+    public function enqueue_scripts(): void {
+
+        wp_enqueue_script($this->vinDecoder, plugin_dir_url(__FILE__) . 'js/vin-decoder-public.js', ['jquery'], $this->version, true);
+
+    }
+
 	/**
 	 * @return void
 	 */
@@ -40,19 +50,10 @@ class  VinDecoderPublic {
 
 	}
 
-	/**
-	 * @return void
-	 */
-	public function enqueue_scripts(): void {
-
-		wp_enqueue_script($this->vinDecoder, plugin_dir_url(__FILE__) . 'js/vin-decoder-public.js', ['jquery'], $this->version, true);
-
-	}
-
     /**
      * @return void
      */
-    public function vd_ajax_data() {
+    public function vd_ajax_data(): void {
 
         wp_localize_script( $this->vinDecoder, 'myajax', ['url' => admin_url('admin-ajax.php')]);
 
@@ -63,15 +64,19 @@ class  VinDecoderPublic {
     /**
      * @return void
      */
-    public function vd_get_vin() {
+    #[NoReturn] public function vd_get_vin(): void {
 
         $vin = $_POST['vin'];
-        
-        //$response = $this->shortcode->vd_get_vin($vin);
 
-        $data = file_get_contents('data.json');
+        $response = '';
 
-        echo $data;
+        if (strlen($vin) === 17) {$response = $this->shortcode->vd_get_vin($vin);}
+
+        //$data = file_get_contents('data.json');
+
+        //echo $data;
+
+        echo $response;
 
         die();
 

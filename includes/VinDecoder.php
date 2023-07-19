@@ -31,22 +31,6 @@ class VinDecoder {
 
 	}
 
-
-	/**
-	 * @return void
-	 */
-	private function load_dependencies(): void {
-
-		require_once plugin_dir_path( __DIR__ ) . 'includes/VinDecoderLoader.php';
-
-		require_once plugin_dir_path( __DIR__ ) . 'admin/VinDecoderAdmin.php';
-
-		require_once plugin_dir_path( __DIR__ ) . 'public/VinDecoderPublic.php';
-
-		$this->loader = new VinDecoderLoader();
-
-	}
-
 	/**
 	 * @return void
 	 */
@@ -78,34 +62,38 @@ class VinDecoder {
 		$this->loader->add_action('wp_enqueue_scripts', $vin_decoder_public, 'vd_ajax_data');
 
         $this->loader->add_action('wp_ajax_vin', $vin_decoder_public, 'vd_get_vin');
+
         $this->loader->add_action('wp_ajax_nopriv_vin', $vin_decoder_public, 'vd_get_vin');
 
 	}
 
-	/**
-	 * @return void
-	 */
-	public function run(): void {
+    /**
+     * @return void
+     */
+    private function load_dependencies(): void {
 
-		$this->loader->run();
+        require_once plugin_dir_path( __DIR__ ) . 'includes/VinDecoderLoader.php';
 
-	}
+        require_once plugin_dir_path( __DIR__ ) . 'admin/VinDecoderAdmin.php';
 
-	/**
-	 * @return string
-	 */
-	public function get_vin_decoder(): string {
+        require_once plugin_dir_path( __DIR__ ) . 'public/VinDecoderPublic.php';
 
-		return $this->vinDecoder;
+        $this->loader = new VinDecoderLoader();
 
-	}
+    }
 
 	/**
 	 * @return string
 	 */
-	public function get_version(): string {
+	public function get_vin_decoder(): string { return $this->vinDecoder;}
 
-		return $this->version;
+	/**
+	 * @return string
+	 */
+	public function get_version(): string { return $this->version;}
 
-	}
+    /**
+     * @return void
+     */
+    public function run(): void { $this->loader->run();}
 }

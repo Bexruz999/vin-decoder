@@ -39,7 +39,16 @@ class VinDecoderLoader {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 	}
 
-	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
+    /**
+     * @param $hooks
+     * @param $hook
+     * @param $component
+     * @param $callback
+     * @param $priority
+     * @param $accepted_args
+     * @return mixed
+     */
+    private function add($hooks, $hook, $component, $callback, $priority, $accepted_args ): mixed {
 
 		$hooks[] = array(
 			'hook'          => $hook,

@@ -11,7 +11,7 @@ class VinShortcode {
                 <p>Enter your VIN to check vehicle details</p>
                 <div class="vin_form">
                     <label class="vin_label">
-                        <input class="vin" type="text" name="vin" placeholder="vehicle vin code">
+                        <input class="vin" type="text" name="vin" placeholder="vehicle vin code" maxlength="17" minlength="17">
                     </label>
                     <button class="vin_submit" id="vin_submit">check</button>
                 </div>
@@ -90,6 +90,8 @@ class VinShortcode {
 
     public function vd_get_vin($vin) {
 
+        $api_key = get_option('');
+
         $curl = curl_init();
 
         curl_setopt_array($curl, [
@@ -102,7 +104,7 @@ class VinShortcode {
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-RapidAPI-Host: vin-decoder19.p.rapidapi.com",
-                "X-RapidAPI-Key: 0a1501abc7msh0952359ea363833p1c6442jsn87a627e579e4"
+                "X-RapidAPI-Key: "
             ],
         ]);
 
