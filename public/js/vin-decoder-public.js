@@ -63,6 +63,5 @@ jQuery(document).ready(function($) {
         else if (response.length === 0) { alert('error');}
 
         else { alert(response);}
-
     }
 });
